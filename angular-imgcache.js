@@ -59,6 +59,11 @@ angular.module('ImgCache', [])
 
             var loadImg = function(type, el, src) {
 
+                if (src.length && src[0] === '/')
+                {
+                    src = (window.rootURL ? window.rootURL : '') + src;
+                }
+
                 ImgCache.$promise.then(function() {
 
                     ImgCache.isCached(src, function(path, success) {
